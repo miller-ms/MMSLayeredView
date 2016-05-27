@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MMSLayeredView_Example' do
+  pod 'MMSLayeredView', :path => '../'
+
+  target 'MMSLayeredView_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
