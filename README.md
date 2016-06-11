@@ -17,7 +17,7 @@ This **MMSLayeredView** class provides the features for layering **UIViews** on 
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-Create a MMSLayeredView object.  Add it to a subview of one of the application's's UIViewController. Or in Interface Builder add a UIView to a subview of one of the UIViewControllers.   In the Identity Inspector, select the class MMSLayeredView.  Size it as you see fit for your application's needs.
+Create a MMSLayeredView object.  Add it to a subview of one of the application's UIViewController subclasses. Or in Interface Builder add a UIView to a subview of one of the UIViewControllers.   In the Identity Inspector, select the class MMSLayeredView.  Size it as you see fit for your application's needs.
 
 Add a background view to the object.  The background view can be a UIView or any subclass of UIView.  Typically, you would add a UIImageView as the background view.  Call the method addBackgroundView to set the background view.
 
@@ -94,9 +94,19 @@ public func mergeTextAndImage() -> UIImage?
 
 ```
 
+## User Interaction
+
+This class gives the application user the following operations:
+
+* __Scale Subview__: Pinch gesture.
+* __Move Subview__: Two finger drag gesture.
+* __Size Subview__: One finger drag gesture to size dimensions independently.
+* __Give Subview Focus__: One finger tap gesture gives focus to a subview and removes it when it already has focus. Tap the background view to give it focus.
+
+
 ## Requirements
 
-MMSLayeredView requires iOS 8.3 or later.
+MMSLayeredView requires iOS 8.0 or later.
 
 ## Installation
 

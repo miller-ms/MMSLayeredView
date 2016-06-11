@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-This class supports layering 1 or more views upon a background view. The user can resize, scale, and move each subview. They can select one of them for focus of operations and set the background view.  The class supports a method to merge the background and subviews into an image.  One application of this class would be to layer text over a photo and export the merged image to a file for submitting to your text messages or social networks.
+This class supports layering 1 or more views upon a background view. The user can resize, scale, and move each subview. They can select one of them for focus of operations and set a background view.  The class supports a method to merge the background and subviews into an image.  Use the pinch gesture to scale a subview; two finger drag gesture to move a subview; one finger drag gesture to size each dimension independently; and the tap gesture to change or remove focus.  One application of this class would be to layer text over a photo and export the merged image to a file for submitting to your text messages or social networks.  Another application would be for an application to add decorations to an image.
                        DESC
 
   s.homepage         = 'https://github.com/<GITHUB_USERNAME>/MMSLayeredView'

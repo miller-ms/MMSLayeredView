@@ -106,12 +106,12 @@
 		607FACD21AFB9204008FA782 /* Example for MMSLayeredView */ = {
 			isa = PBXGroup;
 			children = (
+				2C3182641CF870ED00231945 /* automobile.jpg */,
 				2C31825C1CF7F07300231945 /* SelectColorController.swift */,
 				2C31825D1CF7F07300231945 /* SelectFontController.swift */,
 				2C53B6911D02FBEB00CAC2C0 /* FontCell.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				2C3182601CF7F09300231945 /* ColorCell.swift */,
-				2C3182641CF870ED00231945 /* automobile.jpg */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
