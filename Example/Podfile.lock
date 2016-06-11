@@ -1,0 +1,16 @@
+PODS:
+  - MMSLayeredView (0.1.0)
+
+DEPENDENCIES:
+  - MMSLayeredView (from `../`)
+
+EXTERNAL SOURCES:
+  MMSLayeredView:
+    :path: ../
+
+SPEC CHECKSUMS:
+  MMSLayeredView: 33ccd0e12367b388ece4d0017c6fb807ab921c96
+
+PODFILE CHECKSUM: 6526c71f0d2acaf007407f3fecbd1319a8e3783b
+
+COCOAPODS: 1.0.0

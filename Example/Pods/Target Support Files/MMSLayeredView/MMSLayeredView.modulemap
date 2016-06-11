@@ -1,0 +1,6 @@
+framework module MMSLayeredView {
+  umbrella header "MMSLayeredView-umbrella.h"
+
+  export *
+  module * { export * }
+}

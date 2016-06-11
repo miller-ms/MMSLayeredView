@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C31825E1CF7F07300231945 /* SelectColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31825C1CF7F07300231945 /* SelectColorController.swift */; };
+		2C31825F1CF7F07300231945 /* SelectFontController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31825D1CF7F07300231945 /* SelectFontController.swift */; };
+		2C3182611CF7F09300231945 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3182601CF7F09300231945 /* ColorCell.swift */; };
+		2C3182651CF870ED00231945 /* automobile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C3182641CF870ED00231945 /* automobile.jpg */; };
+		2C53B6921D02FBEB00CAC2C0 /* FontCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53B6911D02FBEB00CAC2C0 /* FontCell.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -28,6 +33,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C31825C1CF7F07300231945 /* SelectColorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectColorController.swift; sourceTree = "<group>"; };
+		2C31825D1CF7F07300231945 /* SelectFontController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFontController.swift; sourceTree = "<group>"; };
+		2C3182601CF7F09300231945 /* ColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
+		2C3182641CF870ED00231945 /* automobile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = automobile.jpg; sourceTree = "<group>"; };
+		2C53B6911D02FBEB00CAC2C0 /* FontCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontCell.swift; sourceTree = "<group>"; };
+		2C8887FC1D0C7B7C00DA226E /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		2C8888001D0C7BE500DA226E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		2CDFC75E1D099D5300C52617 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		39356DBD356D9C7729CEB39E /* Pods-MMSLayeredView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMSLayeredView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MMSLayeredView_Example/Pods-MMSLayeredView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		41447B201603DB86092E437C /* Pods-MMSLayeredView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMSLayeredView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MMSLayeredView_Tests/Pods-MMSLayeredView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4D025EC298B8662C1E588944 /* Pods_MMSLayeredView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMSLayeredView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +106,12 @@
 		607FACD21AFB9204008FA782 /* Example for MMSLayeredView */ = {
 			isa = PBXGroup;
 			children = (
+				2C31825C1CF7F07300231945 /* SelectColorController.swift */,
+				2C31825D1CF7F07300231945 /* SelectFontController.swift */,
+				2C53B6911D02FBEB00CAC2C0 /* FontCell.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				2C3182601CF7F09300231945 /* ColorCell.swift */,
+				2C3182641CF870ED00231945 /* automobile.jpg */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -132,6 +150,9 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				2C8888001D0C7BE500DA226E /* .gitignore */,
+				2C8887FC1D0C7B7C00DA226E /* .travis.yml */,
+				2CDFC75E1D099D5300C52617 /* CHANGELOG.md */,
 				7A035F7598C2730A2C9BADD3 /* MMSLayeredView.podspec */,
 				68F5F51E975A02432423DB75 /* README.md */,
 				EABC6C10577805134522B681 /* LICENSE */,
@@ -248,6 +269,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				2C3182651CF870ED00231945 /* automobile.jpg in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,7 +381,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C53B6921D02FBEB00CAC2C0 /* FontCell.swift in Sources */,
+				2C31825F1CF7F07300231945 /* SelectFontController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				2C31825E1CF7F07300231945 /* SelectColorController.swift in Sources */,
+				2C3182611CF7F09300231945 /* ColorCell.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +515,7 @@
 			baseConfigurationReference = 760DAC248EAB42D6018E619A /* Pods-MMSLayeredView_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MMSLayeredView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -502,6 +529,7 @@
 			baseConfigurationReference = 39356DBD356D9C7729CEB39E /* Pods-MMSLayeredView_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MMSLayeredView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -514,10 +542,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 63449E149924A468F2A70F73 /* Pods-MMSLayeredView_Tests.debug.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -533,10 +558,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 41447B201603DB86092E437C /* Pods-MMSLayeredView_Tests.release.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";

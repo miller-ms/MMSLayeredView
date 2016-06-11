@@ -5,7 +5,5 @@ target 'MMSLayeredView_Example' do
 
   target 'MMSLayeredView_Tests' do
     inherit! :search_paths
-
-    pod 'FBSnapshotTestCase'
   end
 end
