@@ -20,6 +20,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2C866CA81D0EDBF10085B9B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C96834EDE1DB07FC5047023052221022;
+			remoteInfo = MMSLayeredView;
+		};
+		2C866CAA1D0EDBF10085B9B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6C9D8A90DC15D3053730D25E24F39303;
+			remoteInfo = "Pods-MMSLayeredView_Example";
+		};
 		B350793EFE7DB63E5B3E0C16583D5185 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
@@ -263,6 +277,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				2C866CA91D0EDBF10085B9B4 /* PBXTargetDependency */,
+				2C866CAB1D0EDBF10085B9B4 /* PBXTargetDependency */,
 			);
 			name = "Pods-MMSLayeredView_Tests";
 			productName = "Pods-MMSLayeredView_Tests";
@@ -361,6 +377,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2C866CA91D0EDBF10085B9B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C96834EDE1DB07FC5047023052221022 /* MMSLayeredView */;
+			targetProxy = 2C866CA81D0EDBF10085B9B4 /* PBXContainerItemProxy */;
+		};
+		2C866CAB1D0EDBF10085B9B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6C9D8A90DC15D3053730D25E24F39303 /* Pods-MMSLayeredView_Example */;
+			targetProxy = 2C866CAA1D0EDBF10085B9B4 /* PBXContainerItemProxy */;
+		};
 		37D51A28013EFA933C51A5F7078E2BDE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MMSLayeredView;
