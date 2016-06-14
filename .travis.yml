@@ -16,5 +16,5 @@ before_install:
 
 script:
 - pod lib lint --quick
-- set -o pipefail && xcodebuild clean build -workspace Example/MMSLayeredView.xcworkspace -scheme Pods-MMSLayeredView_Tests -sdk iphonesimulator PLATFORM_NAME=iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=ios Simulator,name=iphone 6,OS=8.1' | xcpretty;
-- set -o pipefail && xcodebuild clean test -workspace Example/MMSLayeredView.xcworkspace -scheme MMSLayeredView-Example -sdk iphonesimulator PLATFORM_NAME=iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=ios Simulator,name=iphone 6,OS=8.1' | xcpretty;
+- set -o pipefail && xcodebuild clean build -workspace Example/MMSLayeredView.xcworkspace -scheme Pods-MMSLayeredView_Tests -sdk iphonesimulator PLATFORM_NAME=iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=ios Simulator,name=iphone 6,OS=9.3' | xcpretty;
+- set -o pipefail && xcodebuild clean test -workspace Example/MMSLayeredView.xcworkspace -scheme MMSLayeredView-Example -sdk iphonesimulator PLATFORM_NAME=iphonesimulator ONLY_ACTIVE_ARCH=NO -destination 'platform=ios Simulator,name=iphone 6,OS=9.3' | xcpretty;
