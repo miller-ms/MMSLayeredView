@@ -38,9 +38,9 @@
 		2C3182601CF7F09300231945 /* ColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		2C3182641CF870ED00231945 /* automobile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = automobile.jpg; sourceTree = "<group>"; };
 		2C53B6911D02FBEB00CAC2C0 /* FontCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontCell.swift; sourceTree = "<group>"; };
-		2C8887FC1D0C7B7C00DA226E /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
-		2C8888001D0C7BE500DA226E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		2CDFC75E1D099D5300C52617 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		2C8887FC1D0C7B7C00DA226E /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
+		2C8888001D0C7BE500DA226E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
+		2CDFC75E1D099D5300C52617 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		39356DBD356D9C7729CEB39E /* Pods-MMSLayeredView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMSLayeredView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MMSLayeredView_Example/Pods-MMSLayeredView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		41447B201603DB86092E437C /* Pods-MMSLayeredView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMSLayeredView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MMSLayeredView_Tests/Pods-MMSLayeredView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4D025EC298B8662C1E588944 /* Pods_MMSLayeredView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMSLayeredView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
