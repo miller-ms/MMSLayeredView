@@ -4,7 +4,7 @@
 #
 
 language: swift
-osx_image: xcode6.3
+osx_image: beta-xcode6.3
 cache: cocoapods
 podfile: Example/Podfile
 before_install:
