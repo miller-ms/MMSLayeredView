@@ -39,7 +39,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
 
     // MARK: Class Properties
     
-    public var viewWithFocus: UIView? = nil
+    public private(set) var viewWithFocus: UIView? = nil
     
     private var resizeFrameStart = CGRectZero
     
