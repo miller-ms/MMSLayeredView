@@ -9,7 +9,7 @@ This **MMSLayeredView** class provides the features for layering **UIViews** on 
 
 
 <p align="center">
-<img src="LayeredViewExample.gif" alt="Example">
+<img src="screenshot.png" alt="Example">
 </p>
 
 
@@ -99,7 +99,7 @@ public func mergeTextAndImage() -> UIImage?
 This class gives the application user the following operations:
 
 * __Scale Subview__: Pinch gesture.
-* __Move Subview__: Two finger drag gesture.
+* __Move Subview__: Double tap to give move focus to the view then drag it.
 * __Size Subview__: One finger drag gesture to size dimensions independently.
 * __Give Subview Focus__: One finger tap gesture gives focus to a subview and removes it when it already has focus. Tap the background view to give it focus.
 

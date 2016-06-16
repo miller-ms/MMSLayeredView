@@ -28,37 +28,48 @@
 
 import UIKit
 
+internal enum FocusState {
+    case BackgroundFocus
+    case SizeFocus
+    case MoveFocus
+    case ScaleFocus
+}
+
 public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
 
     // MARK: Class Properties
     
     public var viewWithFocus: UIView? = nil
     
-    var resizeFrameStart = CGRectZero
+    private var resizeFrameStart = CGRectZero
     
     //    var scaleStart:CGFloat = 0.0
     
-    var sizePointStart = CGPointZero
+    private var sizePointStart = CGPointZero
     
-    var isFocusSet = false
+    private var isFocusSet = false
+    
+    private var focusState = FocusState.BackgroundFocus
     
     /// The first touchpoint when the user began moving the textView
-    var touchOrigin = CGPointZero
+    private var touchOrigin = CGPointZero
     
     /// The dragOrigin is the first point the user touched to begin the drag operation to delineate the crop rectangle.
-    var dragOrigin = CGPointZero
+    private var dragOrigin = CGPointZero
     
     /// Layer that obscures the outside region of the crop rectangle
-    var maskLayer = CAShapeLayer()
+    private var maskLayer = CAShapeLayer()
     
     /// Opacity for the shaded area outside the crop rectangle
-    let shadedOpacity = Float(0.65)
+    private let focusOpacity = Float(0.65)
+    
+    private let moveOpacity = Float(0.85)
     
     /// Opacity for the area under the crop rectangle is transparent
-    let transparentOpacity = Float(0.0)
+    private let transparentOpacity = Float(0.0)
     
     /// The color for the shaded area outside the crop rectangle is black.
-    let maskColor = (UIColor).blackColor()
+    private let maskColor = (UIColor).blackColor()
     
     
     // MARK: Class Initialization
@@ -164,19 +175,13 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
      
      - parameter gesture: The pinch gesture.
      */
-    @IBAction func scaleTextView(gesture:UIPinchGestureRecognizer) {
+    @IBAction func scaleView(gesture:UIPinchGestureRecognizer) {
         
         if gesture.state == .Began {
             
             resizeFrameStart = gesture.view!.frame
             
-            //            maskLayer.opacity = shadedOpacity
-            
-            //            scaleStart = 1.0 - gesture.scale
-            
-            print("Start scale ", gesture.scale)
-            
-            giveFocus(gesture.view!)
+            giveFocus(gesture.view!, withState: .ScaleFocus)
             
         } else if gesture.state == .Changed {
             
@@ -264,12 +269,9 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
             
         } else if gesture.state == .Ended {
             
-            //            maskLayer.opacity = transparentOpacity
-            
             removeFocus()
             
         }
-        
         
     }
     
@@ -280,7 +282,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
      
      - parameter gesture: A reference to the pan gesture.
      */
-    @IBAction func sizeTextView(gesture:UIPanGestureRecognizer) {
+    func sizeView(gesture:UIPanGestureRecognizer) {
         
         if gesture.state == .Began {
             
@@ -293,7 +295,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
             sizePointStart = gesture.locationInView(self)
             
             /// give focus to the target view.
-            giveFocus(gesture.view!)
+            giveFocus(gesture.view!, withState: .SizeFocus)
             
             
         } else if gesture.state == .Changed {
@@ -356,12 +358,13 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
         
     }
     
+    
     /**
      A finger was touched within the boundaries of the text view. It's responsible for repositioning the crop rectangle over the image based on the coordinates of touchpoint.
      
-     - parameter gesture A reference to the pan gesture.
+     - parameter gesture: A reference to the pan gesture.
      */
-    @IBAction func moveRectangle(gesture:UIPanGestureRecognizer) {
+    func moveView(gesture:UIPanGestureRecognizer) {
         
         
         if gesture.state == UIGestureRecognizerState.Began {
@@ -370,11 +373,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
              */
             touchOrigin = gesture.locationInView(self)
             
-            //            maskLayer.opacity = shadedOpacity
-            
             dragOrigin = gesture.view!.frame.origin
-            
-            giveFocus(gesture.view!)
             
         } else if gesture.state == .Changed {
             
@@ -395,17 +394,33 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
             
         } else if gesture.state == .Ended {
             
-            //            maskLayer.opacity = transparentOpacity
-            
             /// gesture has ended. remove the focus
             removeFocus()
             
         }
     }
     
+    /**
+     Responds to the pan gesture and based on the focus type set, it either interprets the pan as a move request or size request.
+     
+     - parameter gesture: A reference to the pan gesture.
+     */
+    
+    @IBAction func panView(gesture:UIPanGestureRecognizer) {
+        
+        if focusState == .MoveFocus {
+            
+            moveView(gesture)
+            
+        } else {
+            
+            sizeView(gesture)
+            
+        }
+    }
     
     /**
-     The layered view receiving the tap gesture is given focus if it doesn't already have it.  If it does, focus is removed.
+     The layered view receiving a single tap gesture is given focus if it doesn't already have it.  If it does, focus is removed.
      
      - parameter gesture: The tap gesture
      */
@@ -423,20 +438,33 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
                 /// if a view different from the one with focus was tapped remove the focus and give it to the newly tapped view
                 removeFocus()
                 
-                giveFocus(gesture.view!)
+                giveFocus(gesture.view!, withState: .SizeFocus)
                 
             }
             
         } else {
             
             /// None of the layered views had focus.  Set it to the target and show the visual indicator
-            giveFocus(gesture.view!)
+            giveFocus(gesture.view!, withState: .SizeFocus)
             
         }
         
     }
     
+    /**
+     The layered view receiving a double tap gesture is given focus if it doesn't already have it.  If it does, focus is removed.
+     
+     - parameter gesture: The tap gesture
+     */
+    @IBAction func moveFocus(gesture:UITapGestureRecognizer) {
+        
+        giveFocus(gesture.view!, withState: .MoveFocus)
+        
+    }
+
+    
     // MARK: Helper Methods
+    
     
     /**
      Sets member variables to indicate no view has focus
@@ -446,6 +474,8 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
         
         viewWithFocus = getBackgroundView()
         
+        focusState = .BackgroundFocus
+        
         isFocusSet = false
         
         maskLayer.opacity = transparentOpacity
@@ -453,17 +483,27 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
         
     }
     /**
-     Sets member variables to indicate a view has focus and sets focus to the input view.
+     Sets member variables to indicate a view has focus and sets focus to the input view.  Depending on the focus state the opacity is different.  Move focus has less transparency than size focus.
      
      - parameter toView: layered view to give focus
      */
-    func giveFocus(toView:UIView) -> Void {
+    func giveFocus(toView:UIView, withState newState:FocusState) -> Void {
         
         viewWithFocus = toView
         
+        focusState = newState
+        
         isFocusSet = true
         
-        maskLayer.opacity = shadedOpacity
+        if newState == .MoveFocus {
+            
+            maskLayer.opacity = moveOpacity
+            
+        } else {
+            
+            maskLayer.opacity = focusOpacity
+            
+        }
         
         calculateMaskLayer(maskLayer, insideRect: toView.frame)
         
@@ -575,54 +615,53 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
     
     func addGesturesToView (view:UIView) -> Void {
         
-        /* initialize the move gesture, add it to the subview.  The move gesture requirest 2 fingers.
-         */
-        let moveGesture = UIPanGestureRecognizer()
-        
-        moveGesture.addTarget(self, action: #selector(MMSLayeredView.moveRectangle(_:)))
-        
-        moveGesture.delegate = self
-        
-        moveGesture.maximumNumberOfTouches = 2
-        
-        moveGesture.minimumNumberOfTouches = 2
-        
-        view.addGestureRecognizer(moveGesture)
-        
         /* initialize the scale gesture, and add it to the subview.  The scale gesture is a pinch gesture.
          */
         let scaleGesture = UIPinchGestureRecognizer()
         
-        scaleGesture.addTarget(self, action: #selector(MMSLayeredView.scaleTextView(_:)))
+        scaleGesture.addTarget(self, action: #selector(MMSLayeredView.scaleView(_:)))
         
         scaleGesture.delegate = self
         
         view.addGestureRecognizer(scaleGesture)
         
-        /* initialize the size gesture, add it to the subview.  The size gesture resizes without mainting aspect ratio. It requires 1 finger.
+        /* initialize the pan gesture, add it to the subview.  Depending on the type of focus, the pan gesture is interpreted as resizing or moving the view.
          */
-        let sizeGesture = UIPanGestureRecognizer()
+        let panGesture = UIPanGestureRecognizer()
         
-        sizeGesture.addTarget(self, action: #selector(MMSLayeredView.sizeTextView(_:)))
+        panGesture.addTarget(self, action: #selector(MMSLayeredView.panView(_:)))
         
-        sizeGesture.delegate = self
+        panGesture.delegate = self
         
-        sizeGesture.minimumNumberOfTouches = 1
+        panGesture.minimumNumberOfTouches = 1
         
-        sizeGesture.maximumNumberOfTouches = 1
+        panGesture.maximumNumberOfTouches = 1
         
-        view.addGestureRecognizer(sizeGesture)
+        view.addGestureRecognizer(panGesture)
         
-        /* initialize the focus gesture, add it to the subview.  The focus gesture is used by the application to direct operations to one of the layered views.
+        /* initialize the focus gesture, add it to the subview.  The focus gesture is used by the application to direct operations to one of the layered views.  A single tap interprets the following pan gesture as a resize gesture.
          */
-        let focusGesture = UITapGestureRecognizer()
+        let sizeFocusGesture = UITapGestureRecognizer()
         
-        focusGesture.addTarget(self, action: #selector(MMSLayeredView.toggleFocus(_:)))
+        sizeFocusGesture.addTarget(self, action: #selector(MMSLayeredView.toggleFocus(_:)))
         
-        focusGesture.delegate = self
+        sizeFocusGesture.delegate = self
         
-        view.addGestureRecognizer(focusGesture)
+        view.addGestureRecognizer(sizeFocusGesture)
         
+        /* initialize a double tap focus gesture, add it to the subview.  The double tap focus gesture is used by the application to interpret the following pan gesture as a move gesture.
+         */
+
+        let moveFocusGesture = UITapGestureRecognizer()
+        
+        moveFocusGesture.numberOfTapsRequired = 2
+        
+        moveFocusGesture.addTarget(self, action: #selector(MMSLayeredView.moveFocus(_:)))
+        
+        moveFocusGesture.delegate = self
+        
+        view.addGestureRecognizer(moveFocusGesture)
+
     }
     
     
@@ -682,6 +721,16 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
         
         backgroundView.layer.addSublayer(maskLayer)
         
+        /* initialize the focus gesture, add it to the subview.  The focus gesture is used by the application to direct operations to one of the layered views.
+         */
+        let focusGesture = UITapGestureRecognizer()
+        
+        focusGesture.addTarget(self, action: #selector(MMSLayeredView.toggleFocus(_:)))
+        
+        focusGesture.delegate = self
+        
+        backgroundView.addGestureRecognizer(focusGesture)
+
         // the background view has default focus
         viewWithFocus = backgroundView
         

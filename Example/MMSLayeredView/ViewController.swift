@@ -36,19 +36,40 @@ class ViewController: UIViewController {
     
     @IBAction func changedPtSize(sender: UISlider) {
         
-        let textView = sourceView.viewWithFocus as! UITextView
-        
-        let newFont = textView.font!.fontWithSize(CGFloat(sender.value))
-        
-        textView.font = newFont
+        guard let focusView = sourceView.viewWithFocus as UIView! else {
+            
+            return
+            
+        }
+
+        if focusView.isKindOfClass(UITextView) {
+            
+            let textView = focusView as! UITextView
+            
+            let newFont = textView.font!.fontWithSize(CGFloat(sender.value))
+            
+            textView.font = newFont
+            
+        }
         
     }
     
     @IBAction func changeAlpha(sender: UISlider) {
         
-        let textView = sourceView.viewWithFocus as! UITextView
         
-        textView.alpha = CGFloat(sender.value)
+        guard let focusView = sourceView.viewWithFocus as UIView! else {
+            
+            return
+            
+        }
+        
+        if focusView.isKindOfClass(UITextView) {
+            
+            let  textView = focusView as! UITextView
+            
+            textView.alpha = CGFloat(sender.value)
+            
+        }
         
         
     }
@@ -152,19 +173,25 @@ class ViewController: UIViewController {
     
     func setColor(color:UIColor) -> Void {
         
-        guard let textView = sourceView.viewWithFocus as! UITextView! else {
+        guard let focusView = sourceView.viewWithFocus else {
             
             return
             
         }
         
-        if colorSelecting == .Background {
+        if focusView.isKindOfClass(UITextView) {
             
-            textView.backgroundColor = color
+            let textView = focusView as! UITextView
+        
+            if colorSelecting == .Background {
             
-        } else if colorSelecting == .Foregorund {
+                textView.backgroundColor = color
             
-            textView.textColor = color
+            } else if colorSelecting == .Foregorund {
+            
+                textView.textColor = color
+            
+            }
             
         }
         
@@ -172,25 +199,33 @@ class ViewController: UIViewController {
     
     func setFont(fontName:String) -> Void {
         
-        guard let textView = sourceView.viewWithFocus as! UITextView! else {
+        guard let focusView = sourceView.viewWithFocus as UIView! else {
             
             return
             
         }
         
-        var fontSize:CGFloat = 0.0
         
-        if let textFont = textView.font {
+        if focusView.isKindOfClass(UITextView) {
             
-            fontSize = textFont.pointSize
+            let textView = focusView as! UITextView
             
-        } else {
             
-            fontSize = 12.0
+            var fontSize:CGFloat = 0.0
+            
+            if let textFont = textView.font {
+                
+                fontSize = textFont.pointSize
+                
+            } else {
+                
+                fontSize = 12.0
+                
+            }
+            
+            textView.font = UIFont.init(name: fontName, size: fontSize)
             
         }
-                
-        textView.font = UIFont.init(name: fontName, size: fontSize)
 
         
     }
