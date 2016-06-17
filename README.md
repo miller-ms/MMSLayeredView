@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/MMSLayeredView.svg?style=flat)](http://cocoapods.org/pods/MMSLayeredView)
 [![License](https://img.shields.io/cocoapods/l/MMSLayeredView.svg?style=flat)](http://cocoapods.org/pods/MMSLayeredView)
 [![Platform](https://img.shields.io/cocoapods/p/MMSLayeredView.svg?style=flat)](http://cocoapods.org/pods/MMSLayeredView)
+[![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=miller-ms/MMSLayeredView)](http://clayallsopp.github.io/readme-score?url=miller-ms/MMSLayeredView)
 
 This **MMSLayeredView** class provides the features for layering **UIViews** on a background view and saving the composite image to a png file.  The layered views can be moved, resized, and scaled within the confines of the view's frame.
 

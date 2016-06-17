@@ -3,8 +3,15 @@ All notable changes to this project will be documented in this file.
 `MMSLayeeredView` adheres to [Semantic Versioning](http://semver.org/).
 
 
-## [0.1.0](https://github.com/miller-ms/MMSLayeeredView/releases/tag/0.1.0)
-Released on 2016-06-13. 
+## [1.0.1](https://github.com/miller-ms/MMSLayeeredView/releases/tag/1.0.1)
+Released on 2016-06-16. 
+
+#### Added
+- Corrected links in readme file.
+- Added by [William Miller](https://github.com/miller-ms).
+
+## [1.0.0](https://github.com/miller-ms/MMSLayeeredView/releases/tag/1.0.0)
+Released on 2016-06-16. 
 
 #### Added
 - Initial release of MMSLayeredView.
