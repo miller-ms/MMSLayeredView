@@ -1,6 +1,6 @@
 # MMSLayeredView
 
-[![CI Status](http://img.shields.io/travis/William Miller/MMSLayeredView.svg?style=flat)](https://travis-ci.org/miller-ms/MMSLayeredView)
+[![CI Status](http://img.shields.io/travis/miller-ms/MMSLayeredView.svg?style=flat)](https://travis-ci.org/miller-ms/MMSLayeredView)
 [![Version](https://img.shields.io/cocoapods/v/MMSLayeredView.svg?style=flat)](http://cocoapods.org/pods/MMSLayeredView)
 [![License](https://img.shields.io/cocoapods/l/MMSLayeredView.svg?style=flat)](http://cocoapods.org/pods/MMSLayeredView)
 [![Platform](https://img.shields.io/cocoapods/p/MMSLayeredView.svg?style=flat)](http://cocoapods.org/pods/MMSLayeredView)
