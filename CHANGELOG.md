@@ -8,7 +8,7 @@ Released on 2016-06-18.
 #### Added
 - Corrected readme file on requirements lines.
 - Added by [William Miller](https://github.com/miller-ms).
-- 
+
 ## [1.0.3](https://github.com/miller-ms/MMSLayeeredView/releases/tag/1.0.3)
 Released on 2016-06-18. 
 
