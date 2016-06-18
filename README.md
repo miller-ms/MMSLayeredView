@@ -8,7 +8,7 @@
 This **MMSLayeredView** class provides the features for layering **UIViews** on a background view and saving the composite image to a png file.  The layered views can be moved, resized, and scaled within the confines of the view's frame.
 
 <p align="center">
-<img src=“screenshot.png" alt="Example">
+<img src="screenshot.png" "alt="Sample">
 </p>
 
 ## Basic Usage
