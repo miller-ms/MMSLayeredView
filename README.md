@@ -6,11 +6,9 @@
 [![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=miller-ms/mmslayeredview)](http://clayallsopp.github.io/readme-score?url=miller-ms/mmslayeredview)
 
 This **MMSLayeredView** class provides the features for layering **UIViews** on a background view and saving the composite image to a png file.  The layered views can be moved, resized, and scaled within the confines of the view's frame.
-
 <p align="center">
-<img src="screenshot.png" "alt="Sample">
+<img src="screenshot.gif" alt="Example">
 </p>
-
 ## Basic Usage
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
@@ -63,7 +61,6 @@ Add, remove, and reorder subviews to the layered view with UIView view hiearchy 
     sendSubviewToBack(view: UIView)
 
     bringSubviewToFront(view: UIView)
-
 ```
 The user selects one of the subviews for the focus of application operations by tapping the view.  When tapped the view shows it has focus by filling the area outside it's perimeter with a translucent black.  To get the UIView with focus access the property:
 
@@ -74,14 +71,13 @@ Finally, this class supports the capability for merging the background view and 
 
 ```swift
 public func mergeTextAndImage() -> UIImage?
-
 ```
 ## User Interaction
 This class gives the application user the following operations:
-* __Scale Subview__: Pinch gesture.
-* __Move Subview__: Double tap to give move focus to the view then drag it.
-* __Size Subview__: One finger drag gesture to size dimensions independently.
-* __Give Subview Focus__: One finger tap gesture gives focus to a subview and removes it when it already has focus. Tap the background view to give it focus.
+* **Scale Subview**: Pinch gesture.
+* **Move Subview**: Double tap to give move focus to the view then drag it.
+* **Size Subview**: One finger drag gesture to size dimensions independently.
+* **Give Subview Focus**: One finger tap gesture gives focus to a subview and removes it when it already has focus. Tap the background view to give it focus.
 
 ## Requirements
 MMSLayeredView requires iOS 8.3 or later.
