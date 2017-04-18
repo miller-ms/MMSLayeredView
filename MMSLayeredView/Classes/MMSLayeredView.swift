@@ -35,27 +35,27 @@ internal enum FocusState {
     case ScaleFocus
 }
 
-public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
+open class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
 
     // MARK: Class Properties
     
     public private(set) var viewWithFocus: UIView? = nil
     
-    private var resizeFrameStart = CGRectZero
+    private var resizeFrameStart = CGRect.zero
     
     //    var scaleStart:CGFloat = 0.0
     
-    private var sizePointStart = CGPointZero
+    private var sizePointStart = CGPoint.zero
     
     private var isFocusSet = false
     
     private var focusState = FocusState.BackgroundFocus
     
     /// The first touchpoint when the user began moving the textView
-    private var touchOrigin = CGPointZero
+    private var touchOrigin = CGPoint.zero
     
     /// The dragOrigin is the first point the user touched to begin the drag operation to delineate the crop rectangle.
-    private var dragOrigin = CGPointZero
+    private var dragOrigin = CGPoint.zero
     
     /// Layer that obscures the outside region of the crop rectangle
     private var maskLayer = CAShapeLayer()
@@ -69,7 +69,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
     private let transparentOpacity = Float(0.0)
     
     /// The color for the shaded area outside the crop rectangle is black.
-    private let maskColor = (UIColor).blackColor()
+    private let maskColor =  UIColor.black
     
     
     // MARK: Class Initialization
@@ -97,7 +97,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
         
         maskLayer.fillRule = kCAFillRuleEvenOdd
         
-        maskLayer.fillColor = maskColor.CGColor
+        maskLayer.fillColor = maskColor.cgColor
         
         maskLayer.opacity = transparentOpacity
                 
@@ -118,9 +118,9 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
         
         let insidePath = UIBezierPath(rect: insideRect)
         
-        outsidePath.appendPath(insidePath)
+        outsidePath.append(insidePath)
         
-        mask.path = outsidePath.CGPath;
+        mask.path = outsidePath.cgPath
         
         return mask
         
@@ -135,7 +135,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
      
      - returns: returns true to recognize the gesture.
      */
-    override public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    override open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
         
@@ -154,7 +154,8 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
         
         /* Enable to recognize the pan and tap gestures simultaneous for both the imageView and textView
          */
-        if gestureRecognizer.isKindOfClass(UITapGestureRecognizer) && otherGestureRecognizer.isKindOfClass(UIPanGestureRecognizer) {
+
+        if gestureRecognizer.isKind(of: UITapGestureRecognizer.self) && otherGestureRecognizer.isKind(of: UIPanGestureRecognizer.self) {
             
             return true
             
@@ -175,15 +176,15 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
      
      - parameter gesture: The pinch gesture.
      */
-    @IBAction func scaleView(gesture:UIPinchGestureRecognizer) {
+    @IBAction func scaleView(_ gesture:UIPinchGestureRecognizer) {
         
-        if gesture.state == .Began {
+        if gesture.state == .began {
             
             resizeFrameStart = gesture.view!.frame
             
-            giveFocus(gesture.view!, withState: .ScaleFocus)
+            giveFocus(toView: gesture.view!, withState: .ScaleFocus)
             
-        } else if gesture.state == .Changed {
+        } else if gesture.state == .changed {
             
             print("Change scale ", gesture.scale)
             
@@ -204,7 +205,8 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
             resizedFrame.origin.y = resizeFrameStart.origin.y + (heightChange/2)
             
             /// Compute the new size of the view
-            resizedFrame.size = CGSizeMake(resizedFrame.width - widthChange, resizedFrame.height - heightChange)
+            
+            resizedFrame.size = CGSize(width: resizedFrame.width - widthChange, height: resizedFrame.height - heightChange)
             
             /// Keep the orign from moving out of bounds.
             if resizedFrame.origin.x < 0 {
@@ -264,10 +266,10 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
             gesture.view!.frame = resizedFrame
             
             ///  The mask layer must move with the crop rectangle.
-            calculateMaskLayer(maskLayer, insideRect: gesture.view!.frame)
+            let _ = calculateMaskLayer(mask: maskLayer, insideRect: gesture.view!.frame)
             
             
-        } else if gesture.state == .Ended {
+        } else if gesture.state == .ended {
             
             removeFocus()
             
@@ -284,7 +286,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
      */
     func sizeView(gesture:UIPanGestureRecognizer) {
         
-        if gesture.state == .Began {
+        if gesture.state == .began {
             
             /// save the frame size and touchpoint to compute changes as the figure is moved
             
@@ -292,16 +294,16 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
             
             //            maskLayer.opacity = shadedOpacity
             
-            sizePointStart = gesture.locationInView(self)
+            sizePointStart = gesture.location(in: self)
             
             /// give focus to the target view.
-            giveFocus(gesture.view!, withState: .SizeFocus)
+            giveFocus(toView: gesture.view!, withState: .SizeFocus)
             
             
-        } else if gesture.state == .Changed {
+        } else if gesture.state == .changed {
             
             /// Get the current touchpoint position and the original frame size to recalculate the frame
-            let currentPoint = gesture.locationInView(self)
+            let currentPoint = gesture.location(in: self)
             
             var resize = resizeFrameStart.size
             
@@ -340,14 +342,14 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
                 resize.width = resize.width - ((resize.width + targetFrame.origin.x) - frame.size.width)
             }
             
-            gesture.view!.frame = CGRectMake(targetFrame.origin.x, targetFrame.origin.y, resize.width, resize.height)
+            gesture.view!.frame = CGRect(x:targetFrame.origin.x, y:targetFrame.origin.y, width:resize.width, height:resize.height)
             
             /*  The mask layer must move with the crop rectangle.
              */
-            calculateMaskLayer(maskLayer, insideRect: gesture.view!.frame)
+            let _ = calculateMaskLayer(mask: maskLayer, insideRect: gesture.view!.frame)
             
             
-        } else if gesture.state == .Ended {
+        } else if gesture.state == .ended {
             
             //            maskLayer.opacity = transparentOpacity
             
@@ -367,32 +369,32 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
     func moveView(gesture:UIPanGestureRecognizer) {
         
         
-        if gesture.state == UIGestureRecognizerState.Began {
+        if gesture.state == UIGestureRecognizerState.began {
             
             /*  save the crop view frame's origin to compute the changing position as the finger glides around the screen.  Also, save the first touch point compute the amount to change the frames orign.
              */
-            touchOrigin = gesture.locationInView(self)
+            touchOrigin = gesture.location(in: self)
             
             dragOrigin = gesture.view!.frame.origin
             
-        } else if gesture.state == .Changed {
+        } else if gesture.state == .changed {
             
             /* Compute the change in x and y coordinates with respect to the original touch point.  Compute a new x and y point by adding the change in x and y to the crop view's origin before it was moved. Make this point the new origin.
              */
             
-            let currentPt = gesture.locationInView(self)
+            let currentPt = gesture.location(in: self)
             
             let dx = currentPt.x - touchOrigin.x
             
             let dy = currentPt.y - touchOrigin.y
             
-            gesture.view!.frame = CGRectMake(dragOrigin.x+dx, dragOrigin.y+dy, gesture.view!.frame.size.width, gesture.view!.frame.size.height)
+            gesture.view!.frame = CGRect(x:dragOrigin.x+dx, y:dragOrigin.y+dy, width:gesture.view!.frame.size.width, height:gesture.view!.frame.size.height)
             
-            gesture.view!.frame = restrictMoveWithinFrame(gesture.view!.frame)
+            gesture.view!.frame = restrictMoveWithinFrame(textFrame: gesture.view!.frame)
             
-            calculateMaskLayer(maskLayer, insideRect: gesture.view!.frame)
+            let _ = calculateMaskLayer(mask: maskLayer, insideRect: gesture.view!.frame)
             
-        } else if gesture.state == .Ended {
+        } else if gesture.state == .ended {
             
             /// gesture has ended. remove the focus
             removeFocus()
@@ -406,15 +408,15 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
      - parameter gesture: A reference to the pan gesture.
      */
     
-    @IBAction func panView(gesture:UIPanGestureRecognizer) {
+    @IBAction func panView(_ gesture:UIPanGestureRecognizer) {
         
         if focusState == .MoveFocus {
             
-            moveView(gesture)
+            moveView(gesture: gesture)
             
         } else {
             
-            sizeView(gesture)
+            sizeView(gesture: gesture)
             
         }
     }
@@ -424,7 +426,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
      
      - parameter gesture: The tap gesture
      */
-    @IBAction func toggleFocus(gesture:UITapGestureRecognizer) {
+    @IBAction func toggleFocus(_ gesture:UITapGestureRecognizer) {
         
         if isFocusSet {
             
@@ -438,14 +440,14 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
                 /// if a view different from the one with focus was tapped remove the focus and give it to the newly tapped view
                 removeFocus()
                 
-                giveFocus(gesture.view!, withState: .SizeFocus)
+                giveFocus(toView: gesture.view!, withState: .SizeFocus)
                 
             }
             
         } else {
             
             /// None of the layered views had focus.  Set it to the target and show the visual indicator
-            giveFocus(gesture.view!, withState: .SizeFocus)
+            giveFocus(toView: gesture.view!, withState: .SizeFocus)
             
         }
         
@@ -456,9 +458,9 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
      
      - parameter gesture: The tap gesture
      */
-    @IBAction func moveFocus(gesture:UITapGestureRecognizer) {
+    @IBAction func moveFocus(_ gesture:UITapGestureRecognizer) {
         
-        giveFocus(gesture.view!, withState: .MoveFocus)
+        giveFocus(toView: gesture.view!, withState: .MoveFocus)
         
     }
 
@@ -505,7 +507,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
             
         }
         
-        calculateMaskLayer(maskLayer, insideRect: toView.frame)
+        let _ = calculateMaskLayer(mask: maskLayer, insideRect: toView.frame)
         
         
     }
@@ -585,7 +587,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
          */
         if (restrictedFrame.origin.y + restrictedFrame.height) > frame.height {
             
-            restrictedFrame = CGRectMake(restrictedFrame.origin.x, restrictedFrame.origin.y, restrictedFrame.width, frame.height - restrictedFrame.origin.y)
+            restrictedFrame = CGRect(x:restrictedFrame.origin.x, y:restrictedFrame.origin.y, width:restrictedFrame.width, height:frame.height - restrictedFrame.origin.y)
             
         }
         
@@ -603,7 +605,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
          */
         if (restrictedFrame.origin.x + restrictedFrame.width) > frame.width {
             
-            restrictedFrame = CGRectMake(restrictedFrame.origin.x, restrictedFrame.origin.y, frame.width - restrictedFrame.origin.x, restrictedFrame.height)
+            restrictedFrame = CGRect(x:restrictedFrame.origin.x, y:restrictedFrame.origin.y, width:frame.width - restrictedFrame.origin.x, height:restrictedFrame.height)
             
         }
         
@@ -670,32 +672,34 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
      
      */
     
-    override public func addSubview(view: UIView) {
+    override open func addSubview(_ view: UIView) {
         
-        addGesturesToView(view)
+        addGesturesToView(view: view)
         
         super.addSubview(view)
         
     }
     
-    override public func insertSubview(view: UIView, atIndex index: Int) {
+    override open func insertSubview(_ view: UIView, at index: Int) {
         
-        addGesturesToView(view)
+        addGesturesToView(view: view)
         
-        super.insertSubview(view, atIndex: index)
+        super.insertSubview(view, at: index)
         
     }
     
-    override public func insertSubview(view: UIView, aboveSubview siblingSubview: UIView) {
+    override open func insertSubview(_ view: UIView, aboveSubview siblingSubview: UIView) {
         
-        addGesturesToView(view)
+        addGesturesToView(view: view)
         
         super.insertSubview(view, aboveSubview: siblingSubview)
+
     }
+
     
-    override public func insertSubview(view: UIView, belowSubview siblingSubview: UIView) {
+    override open func insertSubview(_ view: UIView, belowSubview siblingSubview: UIView) {
         
-        addGesturesToView(view)
+        addGesturesToView(view: view)
         
         super.insertSubview(view, aboveSubview: siblingSubview)
         
@@ -713,11 +717,11 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
         
         
         // Enable user interaction
-        backgroundView.userInteractionEnabled = true
+        backgroundView.isUserInteractionEnabled = true
         
-        backgroundView.frame = CGRectMake(0.0, 0.0, bounds.size.width, bounds.size.height)
+        backgroundView.frame = CGRect(x:0.0, y:0.0, width:bounds.size.width, height:bounds.size.height)
         
-        super.insertSubview(backgroundView, atIndex: 0)
+        super.insertSubview(backgroundView, at: 0)
         
         backgroundView.layer.addSublayer(maskLayer)
         
@@ -766,7 +770,7 @@ public class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
         
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
         
-        layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        layer.render(in: UIGraphicsGetCurrentContext()!)
         
         let img = UIGraphicsGetImageFromCurrentImageContext()
         

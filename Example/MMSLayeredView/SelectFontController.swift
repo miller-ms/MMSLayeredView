@@ -32,9 +32,9 @@ class SelectFontController: UITableViewController {
     func LoadFonts() -> Void {
         
         
-        let fontDescriptors = UIFontDescriptor().matchingFontDescriptorsWithMandatoryKeys(nil)
+        let fontDescriptors = UIFontDescriptor().matchingFontDescriptors(withMandatoryKeys: nil)
         
-        let fontCount = CFArrayGetCount(fontDescriptors)
+        let fontCount = CFArrayGetCount(fontDescriptors as CFArray)
                 
         print(fontCount)
         
@@ -43,7 +43,7 @@ class SelectFontController: UITableViewController {
             
             let fontDescriptor = fontDescriptors[idx]
             
-            let name = fontDescriptor.objectForKey(UIFontDescriptorNameAttribute)
+            let name = fontDescriptor.object(forKey: UIFontDescriptorNameAttribute)
             
             fontNames.append(name as! String)
             
@@ -58,19 +58,19 @@ class SelectFontController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return fontNames.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("fontCell", forIndexPath: indexPath) as! FontCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "fontCell", for: indexPath) as! FontCell
         
         cell.lblFontName.text = fontNames[indexPath.row]
 
@@ -78,13 +78,13 @@ class SelectFontController: UITableViewController {
         
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let theViewController = presentingViewController as! ViewController
         
         theViewController.setFont(fontNames[indexPath.row])
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
     }
     

@@ -13,9 +13,9 @@ class ViewController: UIViewController {
     
     enum WhichColor {
         
-        case None
-        case Background
-        case Foregorund
+        case none
+        case background
+        case foregorund
     }
         
     
@@ -25,16 +25,16 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var sliderPtSize: UISlider!
     
-    var colorSelecting = WhichColor.None
+    var colorSelecting = WhichColor.none
     
-    @IBAction func mergeTextWithImage(sender: UIButton) {
+    @IBAction func mergeTextWithImage(_ sender: UIButton) {
         
         
         destinationView.image = sourceView.mergeTextAndImage()
         
     }
     
-    @IBAction func changedPtSize(sender: UISlider) {
+    @IBAction func changedPtSize(_ sender: UISlider) {
         
         guard let focusView = sourceView.viewWithFocus as UIView! else {
             
@@ -42,11 +42,11 @@ class ViewController: UIViewController {
             
         }
 
-        if focusView.isKindOfClass(UITextView) {
+        if focusView.isKind(of: UITextView.self) {
             
             let textView = focusView as! UITextView
             
-            let newFont = textView.font!.fontWithSize(CGFloat(sender.value))
+            let newFont = textView.font!.withSize(CGFloat(sender.value))
             
             textView.font = newFont
             
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         
     }
     
-    @IBAction func changeAlpha(sender: UISlider) {
+    @IBAction func changeAlpha(_ sender: UISlider) {
         
         
         guard let focusView = sourceView.viewWithFocus as UIView! else {
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
             
         }
         
-        if focusView.isKindOfClass(UITextView) {
+        if focusView.isKind(of:UITextView.self) {
             
             let  textView = focusView as! UITextView
             
@@ -81,33 +81,33 @@ class ViewController: UIViewController {
         
         let backgroundView = UIImageView(image: backgroundImage)
         
-        backgroundView.contentMode = .ScaleToFill
+        backgroundView.contentMode = .scaleToFill
         
         backgroundView.tag = 0
         
-        sourceView.addBackgroundView(backgroundView)
+        sourceView.addBackgroundView(backgroundView: backgroundView)
         
-        let textView = UITextView(frame: CGRectMake(0, 0, sourceView.bounds.width/2, sourceView.bounds.height/2), textContainer: nil)
+        let textView = UITextView(frame: CGRect(x: 0, y: 0, width: sourceView.bounds.width/2, height: sourceView.bounds.height/2), textContainer: nil)
         
         textView.tag = 1
         
-        textView.textAlignment = .Center
+        textView.textAlignment = .center
         
-        textView.hidden = false; // the textView is modestly transparent
+        textView.isHidden = false; // the textView is modestly transparent
         
-        textView.backgroundColor =  UIColor.clearColor() // background color is see through
+        textView.backgroundColor =  UIColor.clear // background color is see through
         
         textView.alpha = 1.0 // the background is modestly transparent
         
         textView.layer.borderWidth = 0.0 // the crop rectangle has a solid border
         
-        textView.layer.borderColor = UIColor.blackColor().CGColor // the crop border is white
+        textView.layer.borderColor = UIColor.black.cgColor // the crop border is white
         
-        textView.editable = false
+        textView.isEditable = false
         
-        textView.selectable = false
+        textView.isSelectable = false
         
-        textView.userInteractionEnabled = true
+        textView.isUserInteractionEnabled = true
         
         textView.text = "\"To be or not to be...\"\n- William Shakespear"
         
@@ -115,27 +115,27 @@ class ViewController: UIViewController {
         
         sourceView.addSubview(textView) // add the textView to the imageView
         
-        let textView2 = UITextView(frame: CGRectMake(sourceView.bounds.width/2, sourceView.bounds.height/2, sourceView.bounds.width/2, sourceView.bounds.height/2), textContainer: nil)
+        let textView2 = UITextView(frame: CGRect(x: sourceView.bounds.width/2, y: sourceView.bounds.height/2, width: sourceView.bounds.width/2, height: sourceView.bounds.height/2), textContainer: nil)
         
         textView2.tag = 2
         
-        textView2.textAlignment = .Center
+        textView2.textAlignment = .center
         
-        textView2.hidden = false; // the textView is modestly transparent
+        textView2.isHidden = false; // the textView is modestly transparent
         
-        textView2.backgroundColor =  UIColor.clearColor() // background color is see through
+        textView2.backgroundColor =  UIColor.clear // background color is see through
         
         textView2.alpha = 1.0 // the background is modestly transparent
         
         textView2.layer.borderWidth = 0.0 // the crop rectangle has a solid border
         
-        textView2.layer.borderColor = UIColor.blackColor().CGColor // the crop border is white
+        textView2.layer.borderColor = UIColor.black.cgColor // the crop border is white
         
-        textView2.editable = false
+        textView2.isEditable = false
         
-        textView2.selectable = false
+        textView2.isSelectable = false
         
-        textView2.userInteractionEnabled = true
+        textView2.isUserInteractionEnabled = true
         
         textView2.text = "\"Three blind mice, see how...\"\n- Mickey Mouse"
         
@@ -158,20 +158,20 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
         if identifier == "backgroundSegue" {
             
-            colorSelecting = .Background
+            colorSelecting = .background
             
         } else if identifier == "foregroundSegue" {
             
-            colorSelecting = .Foregorund
+            colorSelecting = .foregorund
         }
         return true
     }
     
-    func setColor(color:UIColor) -> Void {
+    func setColor(_ color:UIColor) -> Void {
         
         guard let focusView = sourceView.viewWithFocus else {
             
@@ -179,15 +179,15 @@ class ViewController: UIViewController {
             
         }
         
-        if focusView.isKindOfClass(UITextView) {
+        if focusView.isKind(of:UITextView.self) {
             
             let textView = focusView as! UITextView
         
-            if colorSelecting == .Background {
+            if colorSelecting == .background {
             
                 textView.backgroundColor = color
             
-            } else if colorSelecting == .Foregorund {
+            } else if colorSelecting == .foregorund {
             
                 textView.textColor = color
             
@@ -197,7 +197,7 @@ class ViewController: UIViewController {
         
     }
     
-    func setFont(fontName:String) -> Void {
+    func setFont(_ fontName:String) -> Void {
         
         guard let focusView = sourceView.viewWithFocus as UIView! else {
             
@@ -206,7 +206,7 @@ class ViewController: UIViewController {
         }
         
         
-        if focusView.isKindOfClass(UITextView) {
+        if focusView.isKind(of:UITextView.self) {
             
             let textView = focusView as! UITextView
             

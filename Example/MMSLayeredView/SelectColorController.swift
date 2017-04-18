@@ -47,80 +47,80 @@ class SelectColorController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 14
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let reuseIdentifier = "colorCell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ColorCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ColorCell
 
-        cell.accessoryType = .None
+        cell.accessoryType = .none
 
         switch indexPath.row {
         case Black:
             let blackCell = cell
-            blackCell.colorView.backgroundColor = UIColor.blackColor()
+            blackCell.colorView.backgroundColor = UIColor.black
             
         case DarkGray:
             let darkGrayCell = cell
-            darkGrayCell.colorView.backgroundColor = UIColor.orangeColor()
+            darkGrayCell.colorView.backgroundColor = UIColor.orange
 
         case LightGray:
             let lightGrayCell = cell
-            lightGrayCell.colorView.backgroundColor = UIColor.lightGrayColor()
+            lightGrayCell.colorView.backgroundColor = UIColor.lightGray
 
         case White:
             let whiteCell = cell
-            whiteCell.colorView.backgroundColor = UIColor.whiteColor()
+            whiteCell.colorView.backgroundColor = UIColor.white
 
         case Gray:
             let grayCell = cell
-            grayCell.colorView.backgroundColor = UIColor.grayColor()
+            grayCell.colorView.backgroundColor = UIColor.gray
 
         case Red:
             let redCell = cell
-            redCell.colorView.backgroundColor = UIColor.redColor()
+            redCell.colorView.backgroundColor = UIColor.red
 
         case Green:
             let greenCell = cell
-            greenCell.colorView.backgroundColor = UIColor.greenColor()
+            greenCell.colorView.backgroundColor = UIColor.green
 
         case Blue:
             let blueCell = cell
-            blueCell.colorView.backgroundColor = UIColor.blueColor()
+            blueCell.colorView.backgroundColor = UIColor.blue
 
         case Cyan:
             let cyanCell = cell
-            cyanCell.colorView.backgroundColor = UIColor.cyanColor()
+            cyanCell.colorView.backgroundColor = UIColor.cyan
 
         case Yellow:
             let yellowCell = cell
-            yellowCell.colorView.backgroundColor = UIColor.yellowColor()
+            yellowCell.colorView.backgroundColor = UIColor.yellow
 
         case Magenta:
             let magentaCell = cell
-            magentaCell.colorView.backgroundColor = UIColor.magentaColor()
+            magentaCell.colorView.backgroundColor = UIColor.magenta
 
         case Orange:
             let orangeCell = cell
-            orangeCell.colorView.backgroundColor = UIColor.orangeColor()
+            orangeCell.colorView.backgroundColor = UIColor.orange
 
         case Purple:
             let purpleCell = cell
-            purpleCell.colorView.backgroundColor = UIColor.purpleColor()
+            purpleCell.colorView.backgroundColor = UIColor.purple
 
         case Brown:
             let brownCell = cell
-            brownCell.colorView.backgroundColor = UIColor.brownColor()
+            brownCell.colorView.backgroundColor = UIColor.brown
             
         default:
             break
@@ -130,57 +130,57 @@ class SelectColorController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        var selectedColor = UIColor.blackColor()
+        var selectedColor = UIColor.black
         
         switch indexPath.row {
             
         case Black:
-            selectedColor = UIColor.blackColor()
+            selectedColor = UIColor.black
             break
             
         case DarkGray:
-            selectedColor = UIColor.orangeColor()
+            selectedColor = UIColor.orange
             
         case LightGray:
-            selectedColor = UIColor.lightGrayColor()
+            selectedColor = UIColor.lightGray
             
         case White:
-            selectedColor = UIColor.whiteColor()
+            selectedColor = UIColor.white
             
         case Gray:
-            selectedColor = UIColor.grayColor()
+            selectedColor = UIColor.gray
             
         case Red:
-            selectedColor = UIColor.redColor()
+            selectedColor = UIColor.red
             
         case Green:
-            selectedColor = UIColor.greenColor()
+            selectedColor = UIColor.green
             
         case Blue:
-            selectedColor = UIColor.blueColor()
+            selectedColor = UIColor.blue
             
         case Cyan:
-            selectedColor = UIColor.cyanColor()
+            selectedColor = UIColor.cyan
             
         case Yellow:
-            selectedColor = UIColor.yellowColor()
+            selectedColor = UIColor.yellow
             
         case Magenta:
-            selectedColor = UIColor.magentaColor()
+            selectedColor = UIColor.magenta
             
         case Orange:
-            selectedColor = UIColor.orangeColor()
+            selectedColor = UIColor.orange
             
         case Purple:
-            selectedColor = UIColor.purpleColor()
+            selectedColor = UIColor.purple
             
         case Brown:
-            selectedColor = UIColor.brownColor()
+            selectedColor = UIColor.brown
             
         default:
-            selectedColor = UIColor.blackColor()
+            selectedColor = UIColor.black
             break
             
         }
@@ -189,7 +189,7 @@ class SelectColorController: UITableViewController {
 
         theViewController.setColor(selectedColor)
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
 
     }
     

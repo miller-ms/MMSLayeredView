@@ -80,7 +80,9 @@ This class gives the application user the following operations:
 * **Give Subview Focus**: One finger tap gesture gives focus to a subview and removes it when it already has focus. Tap the background view to give it focus.
 
 ## Requirements
-MMSLayeredView requires iOS 8.3 or later.
+- *MMSLayeredView requires iOS 8.3 or later.*
+- *Swift 3.0*
+
 ## Installation
 MMSLayeredView is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
