@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 `MMSLayeeredView` adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.0 — Released on 2017-11-19](https://github.com/miller-ms/MMSLayeeredView/releases/tag/2.1.0)
+#### Updated
+- Updated for swift 4.0 compatibility
+- Updated by [William Miller](https://github.com/miller-ms).
+
 ## [2.0.0 — Released on 2017-04-17](https://github.com/miller-ms/MMSLayeeredView/releases/tag/2.0.0)
 #### Updated
 - Updated for swift 3.0 compatibility
