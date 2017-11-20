@@ -35,7 +35,7 @@ internal enum FocusState {
     case ScaleFocus
 }
 
-open class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
+@objc open class MMSLayeredView: UIView, UIGestureRecognizerDelegate {
 
     // MARK: Class Properties
     

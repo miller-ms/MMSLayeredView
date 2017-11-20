@@ -43,7 +43,7 @@ class SelectFontController: UITableViewController {
             
             let fontDescriptor = fontDescriptors[idx]
             
-            let name = fontDescriptor.object(forKey: UIFontDescriptorNameAttribute)
+            let name = fontDescriptor.object(forKey: UIFontDescriptor.AttributeName.name)
             
             fontNames.append(name as! String)
             
